@@ -1,0 +1,77 @@
+name: Run JMeter Tests
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Agenda para executar todos os dias à meia-noite
+  push:
+    branches:
+      - main # Executa os testes quando há push na branch principal
+  pull_request:
+    branches:
+      - main # Executa os testes quando há pull request para a branch principal
+
+jobs:
+  jmeter-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+
+    - name: Download JMeter
+      run: |
+        curl -L https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz -o jmeter.tgz
+        tar -xzf jmeter.tgz
+
+    - name: Run JMeter test_lego_pico_filter
+      run: |
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t path/to/your/test_lego_pico_filter.jmx -l result1.jtl -e -o output-directory1
+
+    - name: Run JMeter test_lego_pico_home
+      run: |
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t path/to/your/test_lego_pico_home.jmx -l result2.jtl -e -o output-directory2
+
+    - name: Run JMeter test_lego_pico_survey
+      run: |
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t path/to/your/test_lego_pico_survey.jmx -l result3.jtl -e -o output-directory3
+
+    - name: Upload JMeter Results Script 1
+      uses: actions/upload-artifact@v2
+      with:
+        name: jmeter-results-script1
+        path: result1.jtl
+
+    - name: Upload JMeter Report Script 1
+      uses: actions/upload-artifact@v2
+      with:
+        name: jmeter-report-script1
+        path: output-directory1
+
+    - name: Upload JMeter Results Script 2
+      uses: actions/upload-artifact@v2
+      with:
+        name: jmeter-results-script2
+        path: result2.jtl
+
+    - name: Upload JMeter Report Script 2
+      uses: actions/upload-artifact@v2
+      with:
+        name: jmeter-report-script2
+        path: output-directory2
+
+    - name: Upload JMeter Results Script 3
+      uses: actions/upload-artifact@v2
+      with:
+        name: jmeter-results-script3
+        path: result3.jtl
+
+    - name: Upload JMeter Report Script 3
+      uses: actions/upload-artifact@v2
+      with:
+        name: jmeter-report-script3
+        path: output-directory3
