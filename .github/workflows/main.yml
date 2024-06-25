@@ -2,7 +2,7 @@ name: Run JMeter Tests
 
 on:
   schedule:
-    - cron: '30 11 * * *' # Agenda para executar todos os dias à meia-noite
+    - cron: '30 12 * * *' # Agenda para executar todos os dias à meia-noite
   push:
     branches:
       - main # Executa os testes quando há push na branch principal
