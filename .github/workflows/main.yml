@@ -32,15 +32,15 @@ jobs:
 
     - name: Run JMeter test_lego_pico_filter
       run: |
-        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t path/to/your/test_lego_pico_filter.jmx -l result1.jtl -e -o jmeter_result
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t test_lego_pico_filter.jmx -l result1.jtl -e -o jmeter_result1
 
     - name: Run JMeter test_lego_pico_home
       run: |
-        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t path/to/your/test_lego_pico_home.jmx -l result2.jtl -e -o output-directory2
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t test_lego_pico_home.jmx -l result2.jtl -e -o jmeter_result2
 
     - name: Run JMeter test_lego_pico_survey
       run: |
-        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t path/to/your/test_lego_pico_survey.jmx -l result3.jtl -e -o output-directory3
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t test_lego_pico_survey.jmx -l result3.jtl -e -o jmeter_result3
 
     - name: Upload JMeter Results Script 1
       uses: actions/upload-artifact@v2
