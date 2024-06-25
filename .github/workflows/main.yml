@@ -15,13 +15,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout Repository
       uses: actions/checkout@v2
 
     - name: Set up Java
       uses: actions/setup-java@v2
       with:
+        distribution: 'temurin'  # Adicione esta linha
         java-version: '11'
+
 
     - name: Download JMeter
       run: |
