@@ -32,7 +32,7 @@ jobs:
 
     - name: Run JMeter test_lego_pico_filter
       run: |
-        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t path/to/your/test_lego_pico_filter.jmx -l result1.jtl -e -o output-directory1
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t path/to/your/test_lego_pico_filter.jmx -l result1.jtl -e -o jmeter_result
 
     - name: Run JMeter test_lego_pico_home
       run: |
