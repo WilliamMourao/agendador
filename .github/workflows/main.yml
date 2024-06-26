@@ -44,3 +44,22 @@ jobs:
       with:
         name: jmeter-report-script1
         path: jmeter_result1
+
+    - name: Wait for 2 minutes
+      run: sleep 120
+
+    - name: Run JMeter another_test
+      run: |
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t another_test.jmx -l result2.csv -e -o jmeter_result2
+
+    - name: Upload JMeter Results Script 2
+      uses: actions/upload-artifact@v2
+      with:
+        name: jmeter-results-script2
+        path: result2.csv
+
+    - name: Upload JMeter Report Script 2
+      uses: actions/upload-artifact@v2
+      with:
+        name: jmeter-report-script2
+        path: jmeter_result2
