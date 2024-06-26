@@ -48,9 +48,9 @@ jobs:
     - name: Wait for 2 minutes
       run: sleep 120
 
-    - name: Run JMeter another_test
+    - name: Run JMeter test_lego_pico_home
       run: |
-        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t another_test.jmx -l result2.csv -e -o jmeter_result2
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t test_lego_pico_home.jmx -l result2.csv -e -o jmeter_result2
 
     - name: Upload JMeter Results Script 2
       uses: actions/upload-artifact@v2
