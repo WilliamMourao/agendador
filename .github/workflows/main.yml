@@ -39,7 +39,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: jmeter-results-script1
-        path: result1.jtl
+        path: result1.csv
 
     - name: Upload JMeter Report Script 1
       uses: actions/upload-artifact@v2
