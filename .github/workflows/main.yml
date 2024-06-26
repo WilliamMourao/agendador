@@ -2,7 +2,7 @@ name: Run JMeter Tests
 
 on:
   schedule:
-    - cron: '30 12 * * *' # Agenda para executar todos os dias à meia-noite
+    - cron: '0 0 * * *' # Agenda para executar todos os dias à meia-noite
   push:
     branches:
       - main # Executa os testes quando há push na branch principal
@@ -21,9 +21,8 @@ jobs:
     - name: Set up Java
       uses: actions/setup-java@v2
       with:
-        distribution: 'temurin'  # Adicione esta linha
+        distribution: 'temurin'
         java-version: '11'
-
 
     - name: Download JMeter
       run: |
@@ -32,9 +31,8 @@ jobs:
 
     - name: Run JMeter test_lego_pico_filter
       run: |
-        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t test_lego_pico_filter.jmx -l result1.jtl -e -o jmeter_result1
+        ./apache-jmeter-5.4.1/bin/jmeter.sh -n -t test_lego_pico_filter.jmx -l result1.csv -e -o jmeter_result1
 
-   
     - name: Upload JMeter Results Script 1
       uses: actions/upload-artifact@v2
       with:
@@ -45,6 +43,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: jmeter-report-script1
-        path: output-directory1
-
-    
+        path: jmeter_result1
