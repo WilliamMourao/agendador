@@ -1,0 +1,29 @@
+name: Run Postman Tests
+
+on:
+  schedule:
+    # Execute todo dia às 0h
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  run-postman-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install newman
+        run: npm install -g newman
+
+      - name: Run Postman Collection
+        run: |
+          newman run postman/YourCollection.json -e postman/YourEnvironment.json
